@@ -289,29 +289,7 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
   margin-top: 14px;
 }
 
-/* Hero visual — card de reserva + perfil de cliente */
-.hero-card-stack {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  width: 100%;
-  max-width: 420px;
-  margin-left: auto;
-}
-.hc-reserva, .hc-profile {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-md);
-  padding: 18px 20px;
-}
-.hc-reserva {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-}
-.hc-reserva .info .name { font-size: 14px; font-weight: 600; color: var(--fg-1); }
-.hc-reserva .info .meta { font-size: 12px; color: var(--fg-3); margin-top: 3px; }
-.hc-reserva .time { font-size: 18px; font-weight: 600; color: var(--brand-dark); }
+/* Badge Bigbox (usado en hero + mockup sección 6) */
 .badge-bigbox {
   display: inline-flex; align-items: center; gap: 5px;
   background: var(--b2b-50);
@@ -322,34 +300,130 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.hc-profile .head {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
-}
-.hc-profile .av {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--brand-gradient);
-  color: #fff;
+
+/* Hero visual — perfil accionable con IA + callouts (estilo deck Woki) */
+.hm-showcase {
+  position: relative;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 600; font-size: 13px;
+  padding: 16px 24px;
+  min-height: 440px;
+  width: 100%;
 }
-.hc-profile .who .n { font-size: 14px; font-weight: 600; color: var(--fg-1); }
-.hc-profile .who .v { font-size: 11.5px; color: var(--fg-3); margin-top: 2px; }
-.hc-profile .tags {
-  display: flex; flex-wrap: wrap; gap: 6px;
+.hm-showcase__halo {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 78%; height: 78%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,102,204,.18) 0%, rgba(0,102,204,.10) 35%, transparent 70%);
+  filter: blur(40px); z-index: 0; pointer-events: none;
 }
-.hc-profile .tag {
-  font-size: 11px; padding: 4px 9px;
-  border-radius: var(--r-pill);
-  background: var(--bg-soft);
-  color: var(--fg-2);
-  border: 1px solid var(--border);
+.hm-showcase__frame {
+  position: relative; z-index: 1;
+  padding: 10px; border-radius: 22px;
+  background: var(--brand-gradient);
+  box-shadow:
+    0 28px 60px -18px rgba(32,43,63,.32),
+    0 0 0 1px rgba(255,255,255,.6) inset,
+    0 0 80px -10px rgba(0,102,204,.30);
 }
-.hero-arrow {
-  position: absolute;
-  left: -28px; top: 50%;
-  width: 28px; height: 2px;
-  background: var(--brand);
-  display: none;
+.hm-showcase__frame-inner {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 6px 18px -6px rgba(32,43,63,.18);
+  width: 340px; max-width: 100%;
+}
+.hm-profile {
+  display: flex; flex-direction: column;
+  padding: 18px 18px 16px;
+  font-family: var(--font-body); color: var(--b2b-900);
+}
+.hm-profile__head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.hm-profile__avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--brand-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px -4px rgba(0,102,204,.4);
+}
+.hm-profile__name {
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  color: var(--brand-dark); line-height: 1.2; margin-bottom: 4px;
+}
+.hm-profile__sub { font-size: 11px; color: #6B7484; }
+.hm-profile__tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.hm-profile__tag {
+  font-size: 10px; font-weight: 600; border-radius: 99px;
+  padding: 4px 10px; letter-spacing: 0.02em;
+  border: 1.5px solid #E7E7E7; color: var(--b2b-900); background: #fff;
+}
+.hm-profile__tag--bigbox { border-color: var(--brand); color: var(--brand); background: rgba(0,102,204,.06); }
+.hm-profile__tag--exp { border-color: #138A36; color: #138A36; background: rgba(19,138,54,.06); }
+.hm-profile__stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;
+  margin-bottom: 14px;
+}
+.hm-profile__stat { padding: 10px 8px; text-align: center; border-right: 1px solid #EEF0F4; }
+.hm-profile__stat:last-child { border-right: none; }
+.hm-profile__stat-val {
+  font-family: var(--font-display); font-size: 16px; font-weight: 700;
+  color: var(--brand-dark); margin-bottom: 2px;
+}
+.hm-profile__stat-lbl {
+  font-size: 9px; color: #818181; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.hm-profile__ia-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--brand);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+}
+.hm-profile__ia-label .spark { width: 11px; height: 11px; }
+.hm-profile__notes { display: flex; flex-direction: column; gap: 8px; }
+.hm-profile__note {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 11px; color: var(--b2b-900); line-height: 1.45;
+}
+.hm-profile__note-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--brand);
+  flex-shrink: 0; margin-top: 5px;
+}
+/* Floating AI callouts pointing at the profile */
+.hm-callout {
+  position: absolute; z-index: 3;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow:
+    0 12px 28px -8px rgba(32,43,63,.18),
+    0 0 0 1px rgba(0,102,204,.08);
+  border-radius: var(--r-pill); padding: 7px 12px 7px 8px;
+  font-family: var(--font-body); font-size: 11px; font-weight: 600;
+  color: var(--b2b-900); white-space: nowrap;
+}
+.hm-callout__icon {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--brand-gradient);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+.hm-callout__icon svg { width: 13px; height: 13px; stroke-width: 2.2px; }
+.hm-callout--tl { top: -2%; left: -4%; animation: hm-float-a 6s ease-in-out infinite; }
+.hm-callout--tr { top: 14%; right: -10%; animation: hm-float-b 7s ease-in-out infinite; }
+.hm-callout--bl { bottom: -2%; left: -2%; animation: hm-float-b 6.5s ease-in-out infinite -2s; }
+.hm-callout--br { bottom: 18%; right: -6%; animation: hm-float-a 7.5s ease-in-out infinite -3s; }
+@keyframes hm-float-a { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes hm-float-b { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+.hm-callout::after {
+  content: ""; position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--brand-gradient);
+  box-shadow: 0 0 0 3px rgba(0,102,204,.12);
+}
+.hm-callout--tl::after { right: -3px; bottom: -3px; }
+.hm-callout--tr::after { left: -3px; bottom: -3px; }
+.hm-callout--bl::after { right: -3px; top: -3px; }
+.hm-callout--br::after { left: -3px; top: -3px; }
+@media (prefers-reduced-motion: reduce) {
+  .hm-callout { animation: none !important; }
 }
 
 /* ==========================================================================
@@ -853,7 +927,11 @@ footer.main-foot .right a:hover { color: var(--brand-dark); }
 @media (max-width: 900px) {
   .hero { padding: 64px 0 80px; }
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-card-stack { margin: 0 auto; }
+  .hm-showcase { min-height: auto; padding: 8px; margin: 0 auto; max-width: 380px; }
+  .hm-callout--tl, .hm-callout--br { display: flex; }
+  .hm-callout--tr, .hm-callout--bl { display: none; }
+  .hm-callout--tl { top: -8px; left: 4%; }
+  .hm-callout--br { bottom: -8px; right: 4%; }
   .databand-grid { grid-template-columns: 1fr; gap: 16px; }
   .databand .item { padding: 28px 24px; min-height: 0; }
   .cards-3 { grid-template-columns: 1fr; }
@@ -910,27 +988,79 @@ footer.main-foot .right a:hover { color: var(--brand-dark); }
       <div class="cta-sub reveal reveal-4 in">Te contamos cómo funciona en 10 minutos.</div>
     </div>
 
-    <div class="hero-card-stack reveal reveal-3 in">
-      <div class="hc-reserva">
-        <div class="info">
-          <div class="name">Elena Vidal</div>
-          <div class="meta">2 personas · <span class="badge-bigbox">Bigbox</span></div>
-        </div>
-        <div class="time num">21:00</div>
-      </div>
-      <div class="hc-profile">
-        <div class="head">
-          <div class="av">EV</div>
-          <div class="who">
-            <div class="n">Elena Vidal</div>
-            <div class="v">Visita 1 · Cliente Bigbox</div>
+    <div class="hm-showcase reveal reveal-3 in" aria-label="Perfil accionable con IA — Cliente Bigbox">
+      <div class="hm-showcase__halo" aria-hidden="true"></div>
+      <div class="hm-showcase__frame">
+        <div class="hm-showcase__frame-inner">
+          <div class="hm-profile">
+            <div class="hm-profile__head">
+              <div class="hm-profile__avatar">EV</div>
+              <div>
+                <div class="hm-profile__name">Elena Vidal</div>
+                <div class="hm-profile__sub">Primera visita · canje Bigbox</div>
+              </div>
+            </div>
+            <div class="hm-profile__tags">
+              <span class="hm-profile__tag hm-profile__tag--bigbox">★ Cliente Bigbox</span>
+              <span class="hm-profile__tag hm-profile__tag--exp">Cena maridaje</span>
+              <span class="hm-profile__tag">Sin gluten</span>
+            </div>
+            <div class="hm-profile__stats">
+              <div class="hm-profile__stat">
+                <div class="hm-profile__stat-val">1</div>
+                <div class="hm-profile__stat-lbl">Visitas</div>
+              </div>
+              <div class="hm-profile__stat">
+                <div class="hm-profile__stat-val">22/08</div>
+                <div class="hm-profile__stat-lbl">Última</div>
+              </div>
+              <div class="hm-profile__stat">
+                <div class="hm-profile__stat-val">Bigbox</div>
+                <div class="hm-profile__stat-lbl">Origen</div>
+              </div>
+            </div>
+            <div class="hm-profile__ia-label">
+              <svg class="spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.13 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+              INSIGHTS IA
+            </div>
+            <div class="hm-profile__notes">
+              <div class="hm-profile__note">
+                <span class="hm-profile__note-dot" aria-hidden="true"></span>
+                <span>Canjeó cena maridaje · 5 tiempos + vinos. Mencionó volver con su pareja.</span>
+              </div>
+              <div class="hm-profile__note">
+                <span class="hm-profile__note-dot" aria-hidden="true"></span>
+                <span>Cumpleaños en agosto · sugerir invitación al menú degustación.</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="tags">
-          <span class="tag">Cumpleaños</span>
-          <span class="tag">Sin gluten</span>
-          <span class="tag">Vino tinto</span>
-        </div>
+      </div>
+
+      <!-- Callouts flotantes -->
+      <div class="hm-callout hm-callout--tl" aria-hidden="true">
+        <span class="hm-callout__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.13 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+        </span>
+        Identificación automática
+      </div>
+      <div class="hm-callout hm-callout--tr" aria-hidden="true">
+        <span class="hm-callout__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        </span>
+        Alertas de alergia
+      </div>
+      <div class="hm-callout hm-callout--bl" aria-hidden="true">
+        <span class="hm-callout__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </span>
+        Métricas en tiempo real
+      </div>
+      <div class="hm-callout hm-callout--br" aria-hidden="true">
+        <span class="hm-callout__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v.5a3 3 0 0 0-2 2.83V9a3 3 0 0 0-2 2.83v.34A3 3 0 0 0 7 15v.5a3 3 0 0 0 3 3 3 3 0 0 0 4-2.83V18a3 3 0 0 0 6 0v-2.5a3 3 0 0 0 0-5V8a3 3 0 0 0-2-2.83V5a3 3 0 0 0-3-3 3 3 0 0 0-3 3"/><path d="M9 13h3"/><path d="M9 9h3"/></svg>
+        </span>
+        Notas inteligentes
       </div>
     </div>
   </div>
