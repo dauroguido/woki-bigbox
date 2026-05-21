@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-AR">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="x-apple-disable-message-reformatting" />
+<meta name="color-scheme" content="light only" />
+<meta name="supported-color-schemes" content="light only" />
+<title>Convertí a tus clientes de Bigbox en regulares, gracias a Woki</title>
+
+<!--
+  ============================================================================
+  Email — Bigbox × Woki
+  ============================================================================
+  De:        Bigbox (dominio habitual, sin remitente personal)
+  Para:      Base de restaurantes prestadores de Bigbox en Argentina
+  Preheader: En fine dining, el 51% de la facturación viene de clientes que
+             vuelven. Te contamos cómo no perderlos.
+
+  ASUNTO PRINCIPAL:
+    Los clientes que canjean tu Bigbox: ¿vuelven?
+
+  ASUNTOS ALTERNATIVOS (para A/B test):
+    A) Bigbox te trae al cliente. ¿Qué pasa después?
+    B) El 51% que tu restaurante está dejando pasar
+
+  NOTAS DE IMPLEMENTACIÓN
+  - Layout: tablas, ancho máximo 600px.
+  - Estilos inline en cada td/span/a para máxima compatibilidad.
+  - Fuentes: Mona Sans / Figtree con fallback Arial/Helvetica.
+  - CTA: tabla anidada (no <a> con padding) — algunos clientes ignoran padding.
+  - El mail debe leer 100% sin imágenes. Las únicas imágenes son los 2 logos
+    del header (co-branding) y tienen alt text.
+  - Dark mode: forzamos light scheme (meta tags arriba) y todos los fondos
+    son explícitos para que Outlook/Gmail dark no inviertan colores.
+  ============================================================================
+-->
+
+<style>
+  /* Reset mínimo para clientes que respetan <style> */
+  body, table, td, p, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  table { border-collapse: collapse !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+  img { border: 0; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+  body { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+  a { text-decoration: none; }
+
+  /* Mobile */
+  @media screen and (max-width: 620px) {
+    .container { width: 100% !important; max-width: 100% !important; }
+    .px-mobile { padding-left: 24px !important; padding-right: 24px !important; }
+    .stack { display: block !important; width: 100% !important; max-width: 100% !important; }
+    .stack-pad { margin-bottom: 16px !important; }
+    .stack-spacer { display: none !important; height: 0 !important; line-height: 0 !important; font-size: 0 !important; }
+    .h1-mobile { font-size: 28px !important; line-height: 1.15 !important; }
+    .h2-mobile { font-size: 22px !important; line-height: 1.2 !important; }
+    .num-big { font-size: 40px !important; line-height: 1 !important; }
+    .center-mobile { text-align: center !important; }
+    .btn-mobile { display: block !important; width: 100% !important; }
+  }
+</style>
+</head>
+
+<body style="margin:0; padding:0; background-color:#F3EFEA; font-family: 'Figtree', Arial, Helvetica, sans-serif; color:#212227;">
+
+<!-- Preheader (oculto, se ve como preview en clientes) -->
+<div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; line-height:1px; color:#F3EFEA;">
+  En fine dining, el 51% de la facturación viene de clientes que vuelven. Te contamos cómo no perderlos.
+</div>
+
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#F3EFEA;">
+  <tr>
+    <td align="center" style="padding: 24px 12px;">
+
+      <!--========================== CONTAINER ==========================-->
+      <table role="presentation" class="container" width="600" cellspacing="0" cellpadding="0" border="0"
+             style="width:600px; max-width:600px; background-color:#FFFFFF; border-radius:16px; overflow:hidden;">
+
+        <!-- ============ 1. HEADER CO-BRANDING Bigbox × Woki ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 28px 40px 22px 40px; border-bottom:1px solid #E8E3DD;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td align="left" valign="middle" style="line-height:0;">
+                  <!-- TODO: reemplazar con SVG oficial de Bigbox -->
+                  <img src="assets/logos/bigbox-logo.svg" alt="Bigbox"
+                       width="86" height="22" style="height:22px; width:auto; display:inline-block; vertical-align:middle; border:0;" />
+                  <span style="display:inline-block; vertical-align:middle; padding:0 14px; font-family:'Mona Sans', Arial, sans-serif; font-size:14px; color:#9A9AA1; line-height:1;">×</span>
+                  <img src="assets/logos/woki-b2b-solid.svg" alt="Woki"
+                       width="80" height="24" style="height:24px; width:auto; display:inline-block; vertical-align:middle; border:0;" />
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ============ 2. H1 + apertura ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 40px 40px 0 40px;">
+            <h1 class="h1-mobile" style="margin:0; font-family:'Mona Sans', Arial, Helvetica, sans-serif; font-size:32px; line-height:1.1; font-weight:600; letter-spacing:-0.02em; color:#132F60;">
+              Convertí a tus clientes de Bigbox en regulares, gracias a Woki.
+            </h1>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="px-mobile" style="padding: 24px 40px 0 40px;">
+            <p style="margin:0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:16px; line-height:1.6; color:#3E3F45;">
+              Hola,
+            </p>
+            <p style="margin:14px 0 0 0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:16px; line-height:1.6; color:#3E3F45;">
+              Te escribimos desde Bigbox para contarte de Woki, una plataforma con la que estamos integrados y que muchos de los restaurantes de nuestro catálogo ya están usando.
+            </p>
+            <p style="margin:14px 0 0 0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:16px; line-height:1.6; color:#3E3F45;">
+              La razón es simple: facilita a tus clientes canjear su Bigbox en tu restaurante, y te da herramientas para fidelizarlos y convertirlos en clientes recurrentes.
+            </p>
+          </td>
+        </tr>
+
+        <!-- ============ Pregunta retórica destacada ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 28px 40px 0 40px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td style="border-left:3px solid #0066CC; padding: 4px 0 4px 18px;">
+                  <p style="margin:0; font-family:'Mona Sans', Arial, Helvetica, sans-serif; font-size:19px; line-height:1.35; font-weight:500; letter-spacing:-0.01em; color:#132F60;">
+                    ¿Cuántos clientes te conocieron por Bigbox, les encantó tu restaurante… y nunca más volvieron?
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ============ 3. BANDA DE DATOS (2 números) ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 36px 40px 0 40px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <!-- Card 1 -->
+                <td class="stack stack-pad" align="left" valign="top" width="49%"
+                    style="background-color:#FAF7F4; border:1px solid #E8E3DD; border-radius:14px; padding: 26px 22px;">
+                  <div style="height:3px; width:36px; background-color:#0066CC; border-radius:2px; margin-bottom:18px; font-size:0; line-height:0;">&nbsp;</div>
+                  <div class="num-big" style="font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:56px; line-height:1; font-weight:700; color:#132F60; letter-spacing:-0.035em;">51<span style="font-size:36px; font-weight:600;">%</span></div>
+                  <div style="margin-top:14px; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:13.5px; line-height:1.5; color:#3E3F45; font-weight:500;">
+                    de la facturación en fine dining viene de clientes recurrentes.<sup style="color:#9A9AA1;">1</sup>
+                  </div>
+                </td>
+                <!-- Gap -->
+                <td class="stack stack-spacer" width="2%" style="font-size:0; line-height:0;">&nbsp;</td>
+                <!-- Card 2 -->
+                <td class="stack" align="left" valign="top" width="49%"
+                    style="background-color:#FAF7F4; border:1px solid #E8E3DD; border-radius:14px; padding: 26px 22px;">
+                  <div style="height:3px; width:36px; background-color:#0066CC; border-radius:2px; margin-bottom:18px; font-size:0; line-height:0;">&nbsp;</div>
+                  <div class="num-big" style="font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:56px; line-height:1; font-weight:700; color:#132F60; letter-spacing:-0.035em;">25–95<span style="font-size:36px; font-weight:600;">%</span></div>
+                  <div style="margin-top:14px; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:13.5px; line-height:1.5; color:#3E3F45; font-weight:500;">
+                    más de ganancias por aumentar la retención solo un 5%.<sup style="color:#9A9AA1;">2</sup>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ============ 4. FRASE ANCLA destacada ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 36px 40px 0 40px;">
+            <p class="h2-mobile" style="margin:0; font-family:'Mona Sans', Arial, Helvetica, sans-serif; font-size:22px; line-height:1.3; font-weight:600; letter-spacing:-0.015em; color:#132F60;">
+              Bigbox trae nuevos clientes. Woki te ayuda a mejorar su experiencia y fidelizarlos.
+            </p>
+          </td>
+        </tr>
+
+        <!-- ============ 5. SUBTÍTULO ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 36px 40px 6px 40px;">
+            <div style="font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#0066CC; line-height:1;">
+              Lo que cambia con Woki
+            </div>
+          </td>
+        </tr>
+
+        <!-- ============ 6. BULLETS (3) ============ -->
+        <!-- Bullet 1 — operación -->
+        <tr>
+          <td class="px-mobile" style="padding: 22px 40px 0 40px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td width="36" valign="top" style="padding-top:2px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                         style="width:28px; height:28px; background:#EEF4FC; border-radius:8px;">
+                    <tr>
+                      <td align="center" valign="middle" style="font-family:'Figtree', Arial, sans-serif; font-size:16px; line-height:1; font-weight:700; color:#0066CC;">
+                        1
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="top" style="padding-left:14px;">
+                  <p style="margin:0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:15.5px; line-height:1.4; font-weight:600; color:#212227;">
+                    La reserva Bigbox entra sola a tu panel de Woki.
+                  </p>
+                  <p style="margin:6px 0 0 0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:14.5px; line-height:1.55; color:#3E3F45;">
+                    Cuando alguien compra una experiencia o giftcard en Bigbox, reserva desde ahí mismo y la reserva aparece en tu panel de Woki con el detalle de qué compró. Sin coordinación por WhatsApp ni hilos sueltos.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Bullet 2 — retención -->
+        <tr>
+          <td class="px-mobile" style="padding: 22px 40px 0 40px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td width="36" valign="top" style="padding-top:2px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                         style="width:28px; height:28px; background:#EEF4FC; border-radius:8px;">
+                    <tr>
+                      <td align="center" valign="middle" style="font-family:'Figtree', Arial, sans-serif; font-size:16px; line-height:1; font-weight:700; color:#0066CC;">
+                        2
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="top" style="padding-left:14px;">
+                  <p style="margin:0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:15.5px; line-height:1.4; font-weight:600; color:#212227;">
+                    El cliente Bigbox deja de ser anónimo.
+                  </p>
+                  <p style="margin:6px 0 0 0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:14.5px; line-height:1.55; color:#3E3F45;">
+                    Queda cargado en tu base con un perfil que se enriquece visita a visita: preferencias, alergias, celebraciones, recurrencia.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Bullet 3 — retención -->
+        <tr>
+          <td class="px-mobile" style="padding: 22px 40px 0 40px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td width="36" valign="top" style="padding-top:2px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                         style="width:28px; height:28px; background:#EEF4FC; border-radius:8px;">
+                    <tr>
+                      <td align="center" valign="middle" style="font-family:'Figtree', Arial, sans-serif; font-size:16px; line-height:1; font-weight:700; color:#0066CC;">
+                        3
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td valign="top" style="padding-left:14px;">
+                  <p style="margin:0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:15.5px; line-height:1.4; font-weight:600; color:#212227;">
+                    Y entra a tu máquina de recurrencia.
+                  </p>
+                  <p style="margin:6px 0 0 0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:14.5px; line-height:1.55; color:#3E3F45;">
+                    Email y WhatsApp segmentados, briefs pre-servicio para el equipo de sala, y alertas para que la próxima vez que aparezcan los reconozcas.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ============ 7. BLOQUE OFERTA EXCLUSIVA (dark) ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 40px 40px 0 40px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                   bgcolor="#132F60" style="background-color:#132F60; border-radius:14px;">
+              <tr>
+                <td align="left" style="padding: 32px 32px;">
+                  <div style="font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#A9C5EF; line-height:1; margin-bottom:14px;">
+                    Exclusivo para restaurantes Bigbox
+                  </div>
+                  <p style="margin:0; font-family:'Mona Sans', Arial, Helvetica, sans-serif; font-size:24px; line-height:1.15; font-weight:600; letter-spacing:-0.015em; color:#FFFFFF;">
+                    Empezá Woki con 30 días gratis,<br/>
+                    y 2 meses al 50% off después.
+                  </p>
+                  <p style="margin:14px 0 0 0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:14px; line-height:1.55; color:rgba(255,255,255,0.82);">
+                    Una propuesta exclusiva para los restaurantes que vienen del catálogo de Bigbox. Sin compromiso, sin contratos.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ============ 8. REASEGURO 72hs ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 32px 40px 0 40px;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                   bgcolor="#FAF7F4" style="background-color:#FAF7F4; border-radius:12px;">
+              <tr>
+                <td align="left" style="padding: 22px 24px;">
+                  <p style="margin:0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:14.5px; line-height:1.6; color:#3E3F45;">
+                    Migrar lleva <strong style="color:#132F60;">72 horas</strong> y lo hace el equipo de Woki. Vos seguís ocupándote del restaurante. Hoy ya hay más de <strong style="color:#132F60;">700 restaurantes</strong> operando con Woki en la región, desde cafeterías de barrio hasta restaurantes con estrellas Michelin.
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ============ 9. CTA WhatsApp ============ -->
+        <tr>
+          <td align="center" class="px-mobile" style="padding: 36px 40px 8px 40px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td align="center" bgcolor="#132F60"
+                    style="background-color:#132F60; border-radius:12px;">
+                  <a href="https://wa.me/5491176520777?text=Hola%2C%20vengo%20del%20cat%C3%A1logo%20de%20Bigbox%20y%20quiero%20saber%20m%C3%A1s%20sobre%20Woki."
+                     target="_blank"
+                     style="display:inline-block; padding:16px 32px; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:16px; line-height:1; font-weight:600; color:#FFFFFF; text-decoration:none; border-radius:12px; min-height:44px;">
+                    Hablar con el equipo por WhatsApp
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" class="px-mobile" style="padding: 0 40px 8px 40px;">
+            <p style="margin:14px 0 0 0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:13.5px; line-height:1.5; color:#6B6C72;">
+              Te contamos cómo funciona en 10 minutos.
+            </p>
+          </td>
+        </tr>
+
+        <!-- ============ 10. PD social proof ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 36px 40px 0 40px; border-top:1px solid #E8E3DD;">
+            <p style="margin:24px 0 0 0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:13.5px; line-height:1.55; color:#6B6C72;">
+              <strong style="color:#3E3F45;">PD:</strong> Woki es la plataforma de hospitalidad para los mejores restaurantes de LatAm. La integración con Bigbox es solo uno de los muchos canales que la nutren — el resto (perfiles enriquecidos, comunicación segmentada, métricas, pagos) se activa solo cuando vos decidís.
+            </p>
+          </td>
+        </tr>
+
+        <!-- ============ FOOTNOTES ============ -->
+        <tr>
+          <td class="px-mobile" style="padding: 28px 40px 36px 40px;">
+            <p style="margin:0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:11.5px; line-height:1.55; color:#9A9AA1;">
+              <sup>1</sup> National Restaurant Association (NRA).<br/>
+              <sup>2</sup> Bain &amp; Company / Harvard Business Review.
+            </p>
+          </td>
+        </tr>
+
+      </table>
+      <!--========================== /CONTAINER ==========================-->
+
+      <!-- Espacio inferior fuera del card -->
+      <table role="presentation" width="600" class="container" cellspacing="0" cellpadding="0" border="0"
+             style="width:600px; max-width:600px;">
+        <tr>
+          <td align="center" style="padding: 18px 24px 8px 24px;">
+            <p style="margin:0; font-family:'Figtree', Arial, Helvetica, sans-serif; font-size:11.5px; line-height:1.55; color:#9A9AA1;">
+              Recibís este email porque sos restaurante prestador en el catálogo de Bigbox.
+            </p>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

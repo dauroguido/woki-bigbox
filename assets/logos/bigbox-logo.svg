@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TODO: Reemplazar con el SVG oficial de Bigbox cuando llegue del equipo de Bigbox.
+  Esta versión es una aproximación renderizada con text + fallbacks tipográficos
+  del sistema (Futura → Avenir Next → Trebuchet MS → sans-serif).
+  El handoff (§6, §7 #1) prohíbe explícitamente reconstruir el logo;
+  ésto es un placeholder provisional aprobado por el usuario.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" role="img" aria-label="Bigbox">
+  <text
+    x="0"
+    y="48"
+    font-family="'Futura', 'Avenir Next', 'Trebuchet MS', 'Helvetica Neue', sans-serif"
+    font-size="52"
+    font-weight="500"
+    fill="#3A3A3A"
+    letter-spacing="-1.2"
+  >bigbox</text>
+</svg>
