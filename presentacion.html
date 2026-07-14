@@ -240,32 +240,41 @@ h2.title{font-family:var(--font-display);font-weight:600;font-size:34px;line-hei
 .land-card:hover .lc-open{text-decoration:underline}
 
 /* ===== Slide 7: mockup mail de confirmación al comensal ===== */
-.rmail{width:100%;max-width:360px;display:flex;flex-direction:column;align-items:stretch}
-.rm-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-lg);overflow:hidden}
-.rm-head{display:flex;gap:13px;align-items:flex-start;padding:16px 16px 14px}
-.rm-thumb{flex:0 0 auto;width:58px;height:58px;border-radius:10px;background:linear-gradient(135deg,#EADFD3 0%,#CDB79E 55%,#A88763 100%);position:relative;overflow:hidden}
-.rm-thumb:after{content:"";position:absolute;left:12px;top:14px;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.55)}
-.rm-head-txt{min-width:0}
-.rm-title{display:flex;align-items:center;gap:7px;font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.2;color:var(--ink);margin:0}
-.rm-check{flex:0 0 auto;width:16px;height:16px;border-radius:50%;background:var(--success);display:inline-flex;align-items:center;justify-content:center}
-.rm-check svg{width:9px;height:9px;color:#fff}
-.rm-sub{font-size:12px;color:var(--ink-2);margin:5px 0 0}
+.slide[data-i="7"] .seg-side{flex:0 0 412px}
+.rmail{width:100%;max-width:404px;display:flex;flex-direction:column;align-items:stretch}
+.rm-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--sh-lg);overflow:hidden}
+/* email header (sender brand) */
+.rm-top{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;border-bottom:1px solid var(--border)}
+.rm-top svg{height:18px;color:var(--b2b-800);display:block}
+.rm-top .rt{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-4)}
+/* food hero band */
+.rm-hero{position:relative;height:96px;background:radial-gradient(130% 100% at 28% 18%,rgba(255,255,255,.4),rgba(255,255,255,0) 52%),linear-gradient(135deg,#E7D8C6 0%,#C9AE8E 46%,#9E7A52 100%)}
+.rm-hero:after{content:"";position:absolute;inset:0;box-shadow:inset 0 -40px 56px -32px rgba(58,38,18,.5)}
+.rm-hero .avatar{position:absolute;left:20px;bottom:-18px;width:48px;height:48px;border-radius:13px;background:#fff;border:1px solid var(--border);box-shadow:var(--sh-md);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--b2b-800);z-index:2}
+/* body */
+.rm-body{padding:25px 22px 4px}
+.rm-title{display:flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:700;font-size:17px;line-height:1.2;color:var(--ink);margin:0}
+.rm-check{flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:var(--success);display:inline-flex;align-items:center;justify-content:center}
+.rm-check svg{width:11px;height:11px;color:#fff}
+.rm-sub{font-size:13.5px;color:var(--ink-2);margin:8px 0 0}
 .rm-sub b{font-weight:700;color:var(--ink)}
-.rm-links{font-size:11px;color:var(--b2b-500);margin:7px 0 0;font-weight:600}
-.rm-details{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px 16px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.rm-details .rl{display:block;font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4)}
-.rm-details .rv{display:block;font-size:13px;font-weight:700;color:var(--ink);margin-top:3px;font-variant-numeric:tabular-nums}
-.rm-actions{display:flex;gap:9px;padding:14px 16px 16px}
-.rm-btn{flex:1;text-align:center;font-family:var(--font-display);font-weight:600;font-size:11.5px;padding:9px 10px;border-radius:8px}
+.rm-links{font-size:12.5px;color:var(--b2b-500);margin:9px 0 0;font-weight:600}
+.rm-details{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 22px;margin-top:13px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.rm-details .rl{display:block;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-4)}
+.rm-details .rv{display:block;font-size:15px;font-weight:700;color:var(--ink);margin-top:4px;font-variant-numeric:tabular-nums}
+.rm-actions{display:flex;gap:11px;padding:14px 22px}
+.rm-btn{flex:1;text-align:center;font-family:var(--font-display);font-weight:600;font-size:12.5px;padding:11px 10px;border-radius:10px}
 .rm-btn.fill{background:var(--b2b-800);color:#fff}
 .rm-btn.ghost{border:1px solid var(--border-strong);color:var(--ink-2)}
-.rm-banner{background:var(--b2b-800);padding:14px 16px;display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center}
-.rm-banner .fl{display:flex;align-items:center;gap:9px}
-.rm-banner .x{color:rgba(255,255,255,.5);font-size:12px}
-.rm-banner .slogan{font-size:11px;font-weight:600;color:rgba(255,255,255,.9);line-height:1.35}
+/* co-branded campaign banner (the return for bigbox) */
+.rm-banner{background:var(--b2b-800);padding:15px 22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.rm-banner .fl{display:flex;align-items:center;gap:12px}
+.rm-banner .fl svg{height:17px;color:#fff;display:block}
+.rm-banner .x{color:rgba(255,255,255,.55);font-size:14px;line-height:1}
+.rm-banner .slogan{font-size:12px;font-weight:600;color:rgba(255,255,255,.92);line-height:1.4}
 .rm-stat{margin-top:16px;text-align:center}
-.rm-stat .n{font-family:var(--font-body);font-weight:800;font-size:34px;line-height:1;color:var(--b2b-500);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.rm-stat .l{font-size:12px;color:var(--ink-3);margin-top:6px;line-height:1.4;max-width:300px;margin-left:auto;margin-right:auto}
+.rm-stat .n{font-family:var(--font-body);font-weight:800;font-size:36px;line-height:1;color:var(--b2b-500);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.rm-stat .l{font-size:12.5px;color:var(--ink-3);margin-top:7px;line-height:1.45;max-width:330px;margin-left:auto;margin-right:auto}
 .rm-stat .l b{color:var(--ink-2);font-weight:700}
 
 /* ===== Slide 10 ===== */
@@ -602,13 +611,17 @@ h2.title{font-family:var(--font-display);font-weight:600;font-size:34px;line-hei
       <div class="seg-side">
         <div class="rmail">
           <div class="rm-card">
-            <div class="rm-head">
-              <span class="rm-thumb"></span>
-              <div class="rm-head-txt">
-                <p class="rm-title">Tu reserva está confirmada <span class="rm-check"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span></p>
-                <p class="rm-sub">Reserva en <b>L'Adesso Ristorante</b></p>
-                <p class="rm-links">Ver menú · Cómo llegar</p>
-              </div>
+            <div class="rm-top">
+              <svg viewBox="0 0 202.48 54.72"><use href="#woki"/></svg>
+              <span class="rt">Confirmación de reserva</span>
+            </div>
+            <div class="rm-hero">
+              <span class="avatar">L</span>
+            </div>
+            <div class="rm-body">
+              <p class="rm-title">Tu reserva está confirmada <span class="rm-check"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></span></p>
+              <p class="rm-sub">Reserva en <b>L'Adesso Ristorante</b></p>
+              <p class="rm-links">Ver menú · Cómo llegar</p>
             </div>
             <div class="rm-details">
               <div><span class="rl">Personas</span><span class="rv">3</span></div>
@@ -621,7 +634,7 @@ h2.title{font-family:var(--font-display);font-weight:600;font-size:34px;line-hei
               <span class="rm-btn ghost">Cancelar</span>
             </div>
             <div class="rm-banner">
-              <span class="fl"><svg style="height:15px;color:#fff" viewBox="0 0 202.48 54.72"><use href="#woki"/></svg><span class="x">×</span><svg style="height:15px;color:#fff" viewBox="0 0 80 26"><use href="#bigbox"/></svg></span>
+              <span class="fl"><svg viewBox="0 0 202.48 54.72"><use href="#woki"/></svg><span class="x">×</span><svg viewBox="0 0 80 26"><use href="#bigbox"/></svg></span>
               <span class="slogan">Woki, el sistema de hospitalidad preferido por bigbox.</span>
             </div>
           </div>
