@@ -3,28 +3,95 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bigbox × Woki</title>
-<meta http-equiv="refresh" content="0; url=./landing.html" />
-<link rel="canonical" href="./landing.html" />
-<script>window.location.replace('./landing.html');</script>
+<meta name="color-scheme" content="light" />
+<title>Woki × bigbox</title>
+<meta name="description" content="Plan de ejecución de la alianza Woki × bigbox · Argentina · Julio 2026. Presentación, emails y landings de campaña." />
+<link rel="icon" type="image/svg+xml" href="assets/logos/woki-b2b-solid.svg" />
 <style>
-  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; background:#FAF7F4; color:#212227; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:24px; }
-  .card { max-width: 480px; text-align: center; }
-  h1 { font-size: 22px; font-weight: 600; color:#132F60; margin: 0 0 18px; letter-spacing: -0.01em; }
-  p { color:#6B6C72; line-height: 1.55; margin: 0 0 24px; }
-  .links { display:flex; gap:12px; justify-content:center; flex-wrap: wrap; }
-  a { display:inline-block; padding:12px 20px; background:#132F60; color:#fff; text-decoration:none; border-radius:10px; font-weight:600; font-size:14px; }
-  a.alt { background:#fff; color:#132F60; border:1px solid #132F60; }
+  @font-face {
+    font-family: 'Figtree';
+    src: url('./assets/fonts/Figtree-Variable.ttf') format('truetype-variations');
+    font-weight: 300 900; font-style: normal; font-display: swap;
+  }
+  :root {
+    --page:#FAF7F4; --surface:#FFFFFF; --border:#E8E3DD; --border-strong:#D6CFC5;
+    --ink:#212227; --ink-2:#3E3F45; --ink-3:#6B6C72; --ink-4:#9A9AA1;
+    --b2b-700:#132F60; --b2b-600:#0066CC; --b2b-50:#EEF4FC;
+    --bigbox-violeta:#5858DA; --bigbox-navy:#1B1B34;
+    --r:12px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; background:var(--page); color:var(--ink);
+    font-family:'Figtree', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    display:flex; align-items:center; justify-content:center; min-height:100vh; padding:32px 24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .card { width:100%; max-width: 720px; }
+  .logos { display:flex; align-items:center; gap:16px; margin-bottom:28px; }
+  .logos img { height:30px; width:auto; display:block; }
+  .logos .x { color:var(--ink-4); font-size:18px; font-weight:400; line-height:1; }
+  .eyebrow {
+    font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--b2b-600); margin:0 0 12px;
+  }
+  h1 { font-size:34px; font-weight:800; color:var(--b2b-700); margin:0 0 14px; letter-spacing:-0.025em; line-height:1.08; }
+  .slogan { font-size:17px; font-weight:600; color:var(--ink-2); margin:0 0 8px; letter-spacing:-0.01em; }
+  .context { font-size:14px; color:var(--ink-3); margin:0 0 34px; }
+  .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  a.tile {
+    display:flex; flex-direction:column; gap:6px; padding:20px 22px;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+    text-decoration:none; color:var(--ink); transition:border-color .2s, transform .2s, box-shadow .2s;
+  }
+  a.tile:hover { border-color:var(--b2b-600); transform:translateY(-2px); box-shadow:0 8px 24px rgba(14,15,18,.08); }
+  a.tile .t { font-size:16px; font-weight:700; color:var(--b2b-700); letter-spacing:-0.01em; }
+  a.tile .d { font-size:13px; color:var(--ink-3); line-height:1.45; }
+  a.tile.feature { grid-column:1 / -1; background:var(--b2b-700); border-color:var(--b2b-700); }
+  a.tile.feature .t, a.tile.feature .d { color:#fff; }
+  a.tile.feature .d { color:rgba(255,255,255,.78); }
+  a.tile.feature:hover { box-shadow:0 12px 28px rgba(19,47,96,.28); }
+  footer { margin-top:34px; font-size:12.5px; color:var(--ink-4); }
+  @media (max-width:560px){ .grid{grid-template-columns:1fr} h1{font-size:27px} }
 </style>
 </head>
 <body>
   <div class="card">
-    <h1>Bigbox × Woki</h1>
-    <p>Si no te redirige automáticamente, abrí la landing o la preview del email:</p>
-    <div class="links">
-      <a href="./landing.html">Landing</a>
-      <a class="alt" href="./email.html">Email</a>
+    <div class="logos">
+      <img src="assets/logos/woki-b2b-solid.svg" alt="Woki" />
+      <span class="x" aria-hidden="true">×</span>
+      <img src="assets/logos/bigbox-dark.svg" alt="bigbox" />
     </div>
+
+    <p class="eyebrow">Alianza Woki × bigbox</p>
+    <h1>Woki × bigbox</h1>
+    <p class="slogan">Woki, el sistema de hospitalidad preferido por bigbox.</p>
+    <p class="context">Plan de ejecución de la alianza · Argentina · Julio 2026</p>
+
+    <div class="grid">
+      <a class="tile feature" href="./presentacion.html">
+        <span class="t">Presentación</span>
+        <span class="d">El plan completo de la alianza en 10 slides. Tecla N para notas del orador.</span>
+      </a>
+      <a class="tile" href="./emails/index.html">
+        <span class="t">Emails (galería)</span>
+        <span class="d">Los 6 envíos de la campaña de lanzamiento, por remitente.</span>
+      </a>
+      <a class="tile" href="./landing-bigbox.html">
+        <span class="t">Landing bigbox</span>
+        <span class="d">Segmento A · cliente bigbox suma Woki.</span>
+      </a>
+      <a class="tile" href="./landing-woki.html">
+        <span class="t">Landing Woki</span>
+        <span class="d">Segmento B · cliente Woki suma bigbox.</span>
+      </a>
+      <a class="tile" href="./landing-paquete.html">
+        <span class="t">Landing Paquete</span>
+        <span class="d">Segmento C · paquete Woki × bigbox.</span>
+      </a>
+    </div>
+
+    <footer>© 2026 Woki × bigbox · Uso interno del equipo de la alianza.</footer>
   </div>
 </body>
 </html>

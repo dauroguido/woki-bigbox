@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Galería de emails · Woki × bigbox</title>
+<style>
+  @font-face{font-family:'Figtree';src:url('/assets/fonts/Figtree-Variable.ttf') format('truetype');font-weight:300 900;font-style:normal;font-display:swap}
+  :root{
+    --page:#FAF7F4;--surface:#FFFFFF;--border:#E8E3DD;--ink:#212227;--ink-2:#3E3F45;--ink-3:#6B6C72;
+    --b2b-700:#132F60;--b2b-50:#EEF4FC;--b2b-600:#0066CC;
+    --bigbox-violeta:#5858DA;--bigbox-navy:#1B1B34;--bigbox-soft:#EDEBFB;--r:12px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);font-family:'Figtree',Arial,Helvetica,sans-serif;color:var(--ink)}
+  .wrap{max-width:1180px;margin:0 auto;padding:44px 32px 64px}
+  header.top{display:flex;flex-direction:column;gap:14px;border-bottom:1px solid var(--border);padding-bottom:26px;margin-bottom:32px}
+  .logos{display:flex;align-items:center;gap:14px}
+  .logos img{height:26px;width:auto;display:block}
+  .logos .x{color:var(--ink-3);font-size:15px}
+  h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--b2b-700)}
+  .sub{margin:0;font-size:14.5px;color:var(--ink-3)}
+  .slogan{font-size:13.5px;color:var(--ink-2);font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  @media (max-width:820px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+  .card .chead{padding:16px 18px;border-bottom:1px solid var(--border)}
+  .row1{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+  .tag{display:inline-block;padding:4px 11px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.02em}
+  .tag.woki{background:var(--b2b-50);color:var(--b2b-700)}
+  .tag.bigbox{background:var(--bigbox-soft);color:var(--bigbox-violeta)}
+  .mnum{font-size:11px;font-weight:700;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase}
+  .subject{margin:0;font-size:16px;font-weight:700;line-height:1.25;letter-spacing:-.01em;color:var(--ink)}
+  .card.bigbox .subject{color:var(--bigbox-navy)}
+  .aud{margin:6px 0 0;font-size:12.5px;color:var(--ink-3);line-height:1.4}
+  .alt{margin:8px 0 0;font-size:12px;color:var(--ink-3)}
+  .alt b{color:var(--ink-2);font-weight:600}
+  .framewrap{position:relative;height:420px;background:#F3EFEA;overflow:hidden}
+  iframe{position:absolute;top:0;left:50%;width:600px;height:840px;border:0;transform:translateX(-50%) scale(.7);transform-origin:top center}
+  .cfoot{padding:12px 18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .badge{font-size:11.5px;color:var(--ink-3)}
+  .badge b{color:var(--b2b-600);font-weight:700}
+  .card.bigbox .badge b{color:var(--bigbox-violeta)}
+  a.open{font-size:13px;font-weight:700;color:#fff;background:var(--b2b-700);padding:9px 16px;border-radius:9px;text-decoration:none}
+  .card.bigbox a.open{background:var(--bigbox-violeta)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logos">
+      <img src="/assets/logos/woki-b2b-solid.svg" alt="Woki" />
+      <span class="x">×</span>
+      <img src="/assets/logos/bigbox-dark.svg" alt="bigbox" />
+    </div>
+    <h1>Galería de emails · revisión interna</h1>
+    <p class="sub">Los 6 envíos de la campaña de lanzamiento (3/8). Co-branding por remitente · <span class="slogan">Woki, el sistema de hospitalidad preferido por bigbox.</span></p>
+  </header>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+  var mails=[
+    {n:"01",sender:"woki",subject:"Sumá un canal de ventas para tus experiencias",alt:"Llegá a más comensales con Woki × bigbox",aud:"Woki → clientes de Woki sin bigbox",offer:false},
+    {n:"02",sender:"woki",subject:"Ya podés conectar tu cuenta de bigbox con Woki",alt:"Activá la integración Woki + bigbox en minutos",aud:"Woki → clientes de Woki con bigbox",offer:false},
+    {n:"03",sender:"bigbox",subject:"La hospitalidad de tu restaurante acaba de mejorar",alt:"Brindá experiencias más personalizadas",aud:"bigbox → clientes de bigbox sin Woki",offer:true},
+    {n:"04",sender:"bigbox",subject:"Conectá Woki con bigbox y ordená tus reservas",alt:"Ya podés unir tus dos plataformas: Woki + bigbox",aud:"bigbox → clientes de bigbox con Woki",offer:false},
+    {n:"05",sender:"bigbox",subject:"Llená tu restaurante todos los días y hacé que vuelvan",alt:"Demanda, operación y fidelización: todo en un solo paso",aud:"bigbox → restaurantes sin ambas · paquete",offer:true},
+    {n:"06",sender:"woki",subject:"El paquete que llena tu restaurante y fideliza a tus comensales",alt:"Sumate a bigbox y Woki en un solo paso",aud:"Woki → restaurantes sin ambas · paquete",offer:true}
+  ];
+  var g=document.getElementById('grid');
+  mails.forEach(function(m){
+    var file="mail-"+m.n+".html";
+    var senderLabel=m.sender==="woki"?"Remitente: Woki":"Remitente: bigbox";
+    var offer=m.offer?'<span class="badge"><b>Con</b> bloque de beneficio</span>':'<span class="badge">Sin oferta económica</span>';
+    var el=document.createElement('div');
+    el.className="card "+m.sender;
+    el.innerHTML=
+      '<div class="chead">'+
+        '<div class="row1"><span class="tag '+m.sender+'">'+senderLabel+'</span><span class="mnum">Mail '+m.n+'</span></div>'+
+        '<p class="subject">'+m.subject+'</p>'+
+        '<p class="aud">'+m.aud+'</p>'+
+        '<p class="alt"><b>Alt A/B:</b> '+m.alt+'</p>'+
+      '</div>'+
+      '<div class="framewrap"><iframe loading="lazy" src="'+file+'" title="Mail '+m.n+'"></iframe></div>'+
+      '<div class="cfoot">'+offer+'<a class="open" href="'+file+'" target="_blank" rel="noopener">Abrir mail</a></div>';
+    g.appendChild(el);
+  });
+</script>
+</body>
+</html>

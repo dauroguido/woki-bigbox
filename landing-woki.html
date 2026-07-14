@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light" />
+<title>Sumá bigbox a tu Woki — Un canal de demanda sin tocar tu operación</title>
+<meta name="description" content="Ya usás Woki. Conectá bigbox y sumá la demanda del marketplace de experiencias líder de Argentina: reservas que aparecen solas en tu panel y disponibilidad en tiempo real." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Sumá bigbox a tu Woki — Un canal de demanda sin tocar tu operación" />
+<meta property="og:description" content="Ya usás Woki. Conectá bigbox y sumá la demanda del marketplace de experiencias líder de Argentina: reservas que aparecen solas en tu panel y disponibilidad en tiempo real." />
+<meta property="og:image" content="assets/logos/woki-b2b-gradient.svg" />
+<meta property="og:locale" content="es_AR" />
+<link rel="icon" type="image/svg+xml" href="assets/logos/woki-b2b-solid.svg" />
+<style>
+@font-face {
+  font-family: 'Figtree';
+  src: url('./assets/fonts/Figtree-Variable.ttf') format('truetype-variations');
+  font-weight: 300 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('./assets/fonts/Figtree-Italic-Variable.ttf') format('truetype-variations');
+  font-weight: 300 900; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('./assets/fonts/MonaSans-Variable.ttf') format('truetype-variations');
+  font-weight: 200 900; font-stretch: 75% 125%; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('./assets/fonts/MonaSans-Italic-Variable.ttf') format('truetype-variations');
+  font-weight: 200 900; font-stretch: 75% 125%; font-style: italic; font-display: swap;
+}
+
+/* ==========================================================================
+   TOKENS — subset B2B + neutros + radii + spacing + motion
+   Copiados de woki-design/colors_and_type.css
+   ========================================================================== */
+:root {
+  --font-display: 'Mona Sans', 'Figtree', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-body:    'Figtree', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+
+  /* Neutros cálidos */
+  --bg:           #FFFFFF;
+  --bg-soft:      #FAF7F4;
+  --bg-muted:     #F3EFEA;
+  --surface-sunk: #F6F2ED;
+  --border:       #E8E3DD;
+  --border-strong:#D6CFC5;
+
+  /* Tinta */
+  --fg:           #212227;
+  --fg-1:         #212227;
+  --fg-2:         #3E3F45;
+  --fg-3:         #6B6C72;
+  --fg-4:         #9A9AA1;
+  --fg-inverse:   #FFFFFF;
+
+  /* B2B Blue track */
+  --b2b-50:  #EEF4FC;
+  --b2b-500: #0066CC;     /* Celeste Woki — primary accent */
+  --b2b-800: #132F60;     /* Azul Profundo — CTAs */
+  --b2b-900: #202B3F;
+
+  --brand:        var(--b2b-500);
+  --brand-dark:   var(--b2b-800);
+  --brand-gradient: linear-gradient(60deg, #202B3F 0%, #0066CC 100%);
+
+  /* Radii */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* Sombras */
+  --shadow-xs: 0 1px 2px rgba(14, 15, 18, 0.06);
+  --shadow-sm: 0 2px 6px rgba(14, 15, 18, 0.06), 0 1px 2px rgba(14, 15, 18, 0.04);
+  --shadow-md: 0 8px 24px rgba(14, 15, 18, 0.08), 0 2px 6px rgba(14, 15, 18, 0.04);
+  --shadow-lg: 0 24px 48px rgba(14, 15, 18, 0.12), 0 4px 12px rgba(14, 15, 18, 0.06);
+
+  /* Spacing 8pt */
+  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-6: 24px;
+  --sp-8: 32px; --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --dur-2: 200ms;
+  --dur-3: 320ms;
+
+  /* Container */
+  --container: 1200px;
+}
+
+/* ==========================================================================
+   RESET + base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+h1, h2, h3, h4, h5, h6, p { margin: 0; }
+
+/* ==========================================================================
+   Tipografía utilitaria
+   ========================================================================== */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand);
+  line-height: 1;
+}
+.display-xxl {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--brand-dark);
+}
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  color: var(--brand-dark);
+}
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--brand-dark);
+}
+.lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--fg-3);
+}
+.num {
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.03em;
+}
+
+/* ==========================================================================
+   Container helper
+   ========================================================================== */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+}
+
+/* ==========================================================================
+   BOTONES
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  transition: transform var(--dur-2) var(--ease-standard),
+              background var(--dur-2) var(--ease-standard),
+              box-shadow var(--dur-2) var(--ease-standard);
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--brand-dark);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(19, 47, 96, 0.25);
+}
+.btn-primary:hover {
+  background: #0E2447;
+  box-shadow: 0 10px 24px rgba(19, 47, 96, 0.32);
+  transform: translateY(-1px);
+}
+.btn-primary svg { color: #fff; }
+.btn-secondary {
+  background: #fff;
+  color: var(--brand-dark);
+  border-color: var(--brand-dark);
+}
+.btn-secondary:hover { background: var(--bg-soft); }
+.btn-ghost {
+  background: transparent;
+  color: var(--brand-dark);
+  padding: 10px 14px;
+}
+.btn-ghost:hover { background: var(--bg-muted); }
+.btn-lg {
+  font-size: 17px;
+  padding: 18px 34px;
+  border-radius: 14px;
+}
+.btn .icon { width: 18px; height: 18px; }
+
+/* ==========================================================================
+   1. TOP NAV
+   ========================================================================== */
+.topnav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-2) var(--ease-standard);
+}
+.topnav.scrolled { border-bottom-color: var(--border); }
+.topnav-inner {
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+}
+.cobrand {
+  display: flex; align-items: center; gap: 14px;
+}
+.cobrand img { height: 24px; width: auto; }
+.cobrand .x {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--fg-4);
+  font-weight: 400;
+  line-height: 1;
+}
+.cobrand .bigbox-mark { height: 18px; }
+
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+.hero {
+  background: var(--bg-soft);
+  padding: 96px 0 112px;
+  overflow: hidden;
+  position: relative;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  margin: 16px 0 20px;
+}
+.hero .lead {
+  font-size: clamp(17px, 1.6vw, 20px);
+  max-width: 540px;
+  margin-bottom: 28px;
+}
+.hero .cta-sub {
+  font-size: 14px;
+  color: var(--fg-3);
+  margin-top: 14px;
+}
+
+/* Badge bigbox (usado en hero + mockup sección 6) */
+.badge-bigbox {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--b2b-50);
+  color: var(--brand);
+  font-size: 10.5px; font-weight: 600;
+  padding: 3px 7px;
+  border-radius: var(--r-pill);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Hero visual — perfil accionable con IA + callouts (estilo deck Woki) */
+.hm-showcase {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px 24px;
+  min-height: 440px;
+  width: 100%;
+}
+.hm-showcase__halo {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 78%; height: 78%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,102,204,.18) 0%, rgba(0,102,204,.10) 35%, transparent 70%);
+  filter: blur(40px); z-index: 0; pointer-events: none;
+}
+.hm-showcase__frame {
+  position: relative; z-index: 1;
+  padding: 10px; border-radius: 22px;
+  background: var(--brand-gradient);
+  box-shadow:
+    0 28px 60px -18px rgba(32,43,63,.32),
+    0 0 0 1px rgba(255,255,255,.6) inset,
+    0 0 80px -10px rgba(0,102,204,.30);
+}
+.hm-showcase__frame-inner {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 6px 18px -6px rgba(32,43,63,.18);
+  width: 340px; max-width: 100%;
+}
+.hm-profile {
+  display: flex; flex-direction: column;
+  padding: 18px 18px 16px;
+  font-family: var(--font-body); color: var(--b2b-900);
+}
+.hm-profile__head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.hm-profile__avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--brand-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px -4px rgba(0,102,204,.4);
+}
+.hm-profile__name {
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  color: var(--brand-dark); line-height: 1.2; margin-bottom: 4px;
+}
+.hm-profile__sub { font-size: 11px; color: #6B7484; }
+.hm-profile__tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.hm-profile__tag {
+  font-size: 10px; font-weight: 600; border-radius: 99px;
+  padding: 4px 10px; letter-spacing: 0.02em;
+  border: 1.5px solid #E7E7E7; color: var(--b2b-900); background: #fff;
+}
+.hm-profile__tag--bigbox { border-color: var(--brand); color: var(--brand); background: rgba(0,102,204,.06); }
+.hm-profile__tag--exp { border-color: #138A36; color: #138A36; background: rgba(19,138,54,.06); }
+.hm-profile__stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #EEF0F4; border-bottom: 1px solid #EEF0F4;
+  margin-bottom: 14px;
+}
+.hm-profile__stat { padding: 10px 8px; text-align: center; border-right: 1px solid #EEF0F4; }
+.hm-profile__stat:last-child { border-right: none; }
+.hm-profile__stat-val {
+  font-family: var(--font-display); font-size: 16px; font-weight: 700;
+  color: var(--brand-dark); margin-bottom: 2px;
+}
+.hm-profile__stat-lbl {
+  font-size: 9px; color: #818181; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.hm-profile__ia-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--brand);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+}
+.hm-profile__ia-label .spark { width: 11px; height: 11px; }
+.hm-profile__notes { display: flex; flex-direction: column; gap: 8px; }
+.hm-profile__note {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 11px; color: var(--b2b-900); line-height: 1.45;
+}
+.hm-profile__note-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--brand);
+  flex-shrink: 0; margin-top: 5px;
+}
+/* Floating AI callouts pointing at the profile */
+.hm-callout {
+  position: absolute; z-index: 3;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow:
+    0 12px 28px -8px rgba(32,43,63,.18),
+    0 0 0 1px rgba(0,102,204,.08);
+  border-radius: var(--r-pill); padding: 7px 12px 7px 8px;
+  font-family: var(--font-body); font-size: 11px; font-weight: 600;
+  color: var(--b2b-900); white-space: nowrap;
+}
+.hm-callout__icon {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--brand-gradient);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+.hm-callout__icon svg { width: 13px; height: 13px; stroke-width: 2.2px; }
+.hm-callout--tl { top: -2%; left: -4%; animation: hm-float-a 6s ease-in-out infinite; }
+.hm-callout--tr { top: 14%; right: -10%; animation: hm-float-b 7s ease-in-out infinite; }
+.hm-callout--bl { bottom: -2%; left: -2%; animation: hm-float-b 6.5s ease-in-out infinite -2s; }
+.hm-callout--br { bottom: 18%; right: -6%; animation: hm-float-a 7.5s ease-in-out infinite -3s; }
+@keyframes hm-float-a { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes hm-float-b { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+.hm-callout::after {
+  content: ""; position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--brand-gradient);
+  box-shadow: 0 0 0 3px rgba(0,102,204,.12);
+}
+.hm-callout--tl::after { right: -3px; bottom: -3px; }
+.hm-callout--tr::after { left: -3px; bottom: -3px; }
+.hm-callout--bl::after { right: -3px; top: -3px; }
+.hm-callout--br::after { left: -3px; top: -3px; }
+@media (prefers-reduced-motion: reduce) {
+  .hm-callout { animation: none !important; }
+}
+
+/* ==========================================================================
+   3. CONTEXTO / PROBLEMA
+   ========================================================================== */
+.context {
+  padding: 96px 0;
+  background: var(--bg);
+  text-align: center;
+}
+.context h2 {
+  font-size: clamp(28px, 3.6vw, 40px);
+  max-width: 760px;
+  margin: 0 auto 24px;
+}
+.context .lead {
+  font-size: 18px;
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--fg-2);
+}
+
+/* ==========================================================================
+   4. BANDA DE DATOS (3)
+   ========================================================================== */
+.databand {
+  padding: 96px 0;
+  background: var(--bg-soft);
+}
+.databand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.databand .item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 36px 32px;
+  text-align: left;
+  box-shadow: var(--shadow-xs);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 240px;
+}
+.databand .item .accent {
+  height: 3px;
+  width: 36px;
+  background: var(--brand);
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+.databand .num-big {
+  font-size: clamp(52px, 5.5vw, 72px);
+  font-weight: 700;
+  color: var(--brand-dark);
+  line-height: 1;
+  margin-bottom: 18px;
+  letter-spacing: -0.035em;
+}
+.databand .num-big .pct {
+  font-size: 0.62em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.databand .desc {
+  font-size: 15px;
+  color: var(--fg-2);
+  line-height: 1.55;
+  font-weight: 500;
+}
+.databand .desc sup { color: var(--fg-4); font-weight: 400; }
+.databand .footnotes {
+  margin-top: 40px;
+  font-size: 12px;
+  color: var(--fg-3);
+  display: flex; gap: 28px; flex-wrap: wrap;
+  padding-left: 4px;
+}
+
+/* ==========================================================================
+   4b. FRASE ANCLA (transición)
+   ========================================================================== */
+.anchor-band {
+  background: var(--bg-soft);
+  padding: 48px 0 96px;
+  text-align: center;
+}
+.anchor-band .ancla {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  color: var(--brand-dark);
+  max-width: 880px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+.anchor-band .ancla .em {
+  background: linear-gradient(180deg, transparent 65%, rgba(0,102,204,0.14) 65%);
+}
+
+/* ==========================================================================
+   5. EJE RETENCIÓN
+   ========================================================================== */
+.section-retencion {
+  padding: 96px 0;
+  background: var(--bg);
+  text-align: center;
+}
+.section-retencion .head { max-width: 720px; margin: 0 auto 56px; }
+.section-retencion h2 {
+  font-size: clamp(28px, 3.6vw, 40px);
+  margin: 14px 0 18px;
+}
+.section-retencion .lead {
+  font-size: 18px;
+  color: var(--fg-3);
+}
+.cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: left;
+}
+.card-feature {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-2) var(--ease-standard),
+              box-shadow var(--dur-2) var(--ease-standard);
+}
+.card-feature:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.card-feature .icon-wrap {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--brand);
+  margin-bottom: 20px;
+}
+.card-feature .icon-wrap svg { width: 28px; height: 28px; }
+.card-feature h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+.card-feature p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--fg-3);
+}
+
+/* ==========================================================================
+   6. EJE OPERACIÓN
+   ========================================================================== */
+.section-operacion {
+  padding: 96px 0;
+  background: var(--bg-soft);
+}
+.op-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.op-grid h2 {
+  font-size: clamp(28px, 3.6vw, 40px);
+  margin: 14px 0 20px;
+}
+.op-grid p.lead-op {
+  font-size: 18px;
+  color: var(--fg-3);
+  line-height: 1.55;
+  margin-bottom: 28px;
+}
+.op-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.op-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 15.5px;
+  color: var(--fg-1);
+  line-height: 1.5;
+}
+.op-list .check {
+  flex: 0 0 22px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--b2b-50);
+  color: var(--brand);
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.op-list .check svg { width: 14px; height: 14px; }
+
+/* Mockup panel Woki reservas */
+.mock-panel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-body);
+}
+.mp-head {
+  padding: 14px 18px;
+  background: var(--surface-sunk);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; color: var(--fg-1);
+}
+.mp-head svg { width: 16px; height: 16px; color: var(--brand); }
+.mp-head .spacer { flex: 1; }
+.mp-head .filter {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-3);
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  background: #fff;
+  border: 1px solid var(--border);
+}
+.mp-row {
+  padding: 14px 18px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13.5px;
+  border-top: 1px solid var(--border);
+}
+.mp-row.bigbox {
+  background: linear-gradient(90deg, rgba(0,102,204,0.06), transparent 80%);
+  border-left: 3px solid var(--brand);
+}
+.mp-row .left .name { font-weight: 600; color: var(--fg-1); font-size: 14px; }
+.mp-row .left .meta {
+  font-size: 12px;
+  color: var(--fg-3);
+  margin-top: 3px;
+  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+}
+.mp-row .right { text-align: right; }
+.mp-row .right .time { font-weight: 600; color: var(--fg-1); font-size: 14px; }
+.mp-row .right .src {
+  font-size: 11px;
+  color: var(--fg-3);
+  margin-top: 3px;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.mp-row .right .src .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--brand); display: inline-block;
+}
+.mp-detail {
+  padding: 0 18px 16px 21px;
+  display: flex; flex-direction: column; gap: 6px;
+  background: linear-gradient(90deg, rgba(0,102,204,0.04), transparent 90%);
+  border-left: 3px solid var(--brand);
+}
+.mp-detail .lbl {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-4);
+  font-weight: 600;
+}
+.mp-detail .val {
+  font-size: 13px;
+  color: var(--fg-2);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   7. Y MUCHO MÁS
+   ========================================================================== */
+.section-mas {
+  padding: 96px 0;
+  background: var(--bg);
+  text-align: center;
+}
+.section-mas .head { max-width: 720px; margin: 0 auto 56px; }
+.section-mas h2 {
+  font-size: clamp(28px, 3.6vw, 40px);
+  margin-bottom: 16px;
+}
+.section-mas .lead {
+  font-size: 18px;
+  color: var(--fg-3);
+}
+.grid-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px 40px;
+  text-align: left;
+}
+.feat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.feat .ic {
+  color: var(--brand);
+  width: 26px; height: 26px;
+}
+.feat .ic svg { width: 100%; height: 100%; }
+.feat h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.feat p {
+  font-size: 14px;
+  color: var(--fg-3);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   8. OFERTA + IMPLEMENTACIÓN (dark)
+   ========================================================================== */
+.section-offer {
+  background: var(--brand-dark);
+  color: #fff;
+  padding: 96px 0;
+  position: relative;
+  overflow: hidden;
+}
+.section-offer::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto auto;
+  width: 60%; height: 60%;
+  background: radial-gradient(circle at 70% 30%, rgba(0,102,204,0.22), transparent 60%);
+  pointer-events: none;
+}
+.offer-wrap { position: relative; text-align: center; }
+.offer-wrap .eyebrow-light {
+  color: rgba(255,255,255,0.7);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.offer-wrap h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.2vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: #fff;
+  max-width: 760px;
+  margin: 0 auto 22px;
+}
+.offer-wrap .copy {
+  font-size: 18px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.82);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.offer-divider {
+  max-width: 480px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 64px auto;
+}
+.impl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  text-align: left;
+  max-width: 920px;
+  margin: 40px auto 0;
+}
+.impl-item .step {
+  font-size: 56px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+}
+.impl-item h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: -0.005em;
+}
+.impl-item p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.5;
+}
+.offer-h3 {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  max-width: 640px;
+  margin: 0 auto 14px;
+}
+.offer-logo {
+  margin-bottom: 36px;
+  display: flex; justify-content: center;
+}
+.offer-logo img { height: 28px; }
+
+/* ==========================================================================
+   9. CTA FINAL
+   ========================================================================== */
+.section-cta {
+  padding: 120px 0;
+  background: var(--bg);
+  text-align: center;
+}
+.section-cta h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  max-width: 760px;
+  margin: 0 auto 20px;
+}
+.section-cta .lead {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto 36px;
+  color: var(--fg-3);
+}
+.section-cta .below {
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--fg-3);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   10. FOOTER
+   ========================================================================== */
+footer.main-foot {
+  padding: 36px 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+footer.main-foot .inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  flex-wrap: wrap;
+}
+footer.main-foot .left {
+  display: flex; align-items: center; gap: 16px;
+  color: var(--fg-3);
+  font-size: 13px;
+}
+footer.main-foot .left img { height: 20px; }
+footer.main-foot .right {
+  display: flex; gap: 22px;
+  font-size: 13px;
+  color: var(--fg-3);
+}
+footer.main-foot .right a:hover { color: var(--brand-dark); }
+
+
+/* ==========================================================================
+   8b. FORMULARIO DE CAPTURA + helpers de landing
+   ========================================================================== */
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 6px; }
+.hero-slogan {
+  font-family: var(--font-display); font-weight: 600; font-size: 15.5px;
+  color: var(--brand-dark); letter-spacing: -0.01em; margin: 18px 0 26px;
+  padding-left: 16px; border-left: 3px solid var(--brand); line-height: 1.35; max-width: 460px;
+}
+.cards-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; text-align: left; }
+.proof-band { padding: 72px 0; background: var(--bg); }
+.proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.proof-item {
+  display: flex; align-items: center; gap: 18px;
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 26px 28px;
+}
+.proof-item .p-ic {
+  flex: 0 0 44px; width: 44px; height: 44px; border-radius: 12px;
+  background: var(--b2b-50); color: var(--brand);
+  display: flex; align-items: center; justify-content: center;
+}
+.proof-item .p-ic svg { width: 24px; height: 24px; }
+.proof-item .p-txt strong {
+  display: block; font-family: var(--font-display); font-size: 20px;
+  font-weight: 600; color: var(--brand-dark); letter-spacing: -0.01em; margin-bottom: 3px;
+}
+.proof-item .p-txt span { font-size: 14px; color: var(--fg-3); line-height: 1.5; }
+footer.main-foot .left .x-sep { color: var(--fg-4); font-family: var(--font-display); }
+footer.main-foot .left img { height: 20px; }
+
+.section-form { padding: 96px 0; background: var(--bg-soft); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.form-copy .eyebrow { display: block; margin-bottom: 14px; }
+.form-copy h2 { font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 18px; }
+.form-copy .lead { font-size: 18px; margin-bottom: 4px; }
+.form-copy .slogan-line {
+  font-family: var(--font-display); font-size: 17px; font-weight: 600;
+  color: var(--brand-dark); line-height: 1.35; padding-left: 18px;
+  border-left: 3px solid var(--brand); letter-spacing: -0.01em; margin-top: 24px;
+}
+.form-bullets { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-direction: column; gap: 14px; }
+.form-bullets li { display: flex; align-items: flex-start; gap: 12px; font-size: 15.5px; color: var(--fg-1); line-height: 1.5; }
+.form-bullets .check {
+  flex: 0 0 22px; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--b2b-50); color: var(--brand);
+  display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;
+}
+.form-bullets .check svg { width: 14px; height: 14px; }
+.form-card { background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg); padding: 32px; box-shadow: var(--shadow-md); }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 13px; font-weight: 600; color: var(--fg-2); margin-bottom: 6px; }
+.field label .req { color: var(--brand); }
+.field input {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--border-strong);
+  border-radius: 10px; font-family: var(--font-body); font-size: 15px; color: var(--fg-1);
+  background: #fff; transition: border-color var(--dur-2) var(--ease-standard), box-shadow var(--dur-2) var(--ease-standard);
+}
+.field input::placeholder { color: var(--fg-4); }
+.field input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--b2b-50); }
+.field.err input { border-color: #C0392B; }
+.field .msg { font-size: 12px; color: #C0392B; margin-top: 5px; display: none; }
+.field.err .msg { display: block; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-card .btn { width: 100%; margin-top: 8px; }
+.form-note { font-size: 12.5px; color: var(--fg-3); margin-top: 16px; text-align: center; line-height: 1.5; }
+.form-success { display: none; text-align: center; padding: 28px 8px; }
+.form-card.done .form-body { display: none; }
+.form-card.done .form-success { display: block; }
+.form-success .ok-ic {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--b2b-50); color: var(--brand);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
+}
+.form-success .ok-ic svg { width: 30px; height: 30px; }
+.form-success h3 { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--brand-dark); margin-bottom: 10px; letter-spacing: -0.015em; }
+.form-success p { font-size: 15px; color: var(--fg-3); line-height: 1.55; }
+@media (max-width: 900px) {
+  .form-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cards-2 { grid-template-columns: 1fr; }
+  .proof-grid { grid-template-columns: 1fr; }
+  .section-form { padding: 72px 0; }
+}
+@media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   ANIMATIONS — fade-up on scroll
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms var(--ease-standard),
+              transform 600ms var(--ease-standard);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-2 { transition-delay: 80ms; }
+.reveal-3 { transition-delay: 160ms; }
+.reveal-4 { transition-delay: 240ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero { padding: 64px 0 80px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hm-showcase { min-height: auto; padding: 8px; margin: 0 auto; max-width: 380px; }
+  .hm-callout--tl, .hm-callout--br { display: flex; }
+  .hm-callout--tr, .hm-callout--bl { display: none; }
+  .hm-callout--tl { top: -8px; left: 4%; }
+  .hm-callout--br { bottom: -8px; right: 4%; }
+  .databand-grid { grid-template-columns: 1fr; gap: 16px; }
+  .databand .item { padding: 28px 24px; min-height: 0; }
+  .cards-3 { grid-template-columns: 1fr; }
+  .op-grid { grid-template-columns: 1fr; gap: 48px; }
+  .grid-features { grid-template-columns: repeat(2, 1fr); gap: 36px 28px; }
+  .impl-grid { grid-template-columns: 1fr; gap: 28px; }
+  .context, .databand, .section-retencion, .section-operacion,
+  .section-mas, .section-offer { padding: 72px 0; }
+  .section-cta { padding: 80px 0; }
+}
+@media (max-width: 600px) {
+  .grid-features { grid-template-columns: 1fr; }
+  .topnav-inner { height: 56px; }
+  .cobrand img { height: 20px; }
+  footer.main-foot .inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="topnav" id="topnav">
+  <div class="container topnav-inner">
+    <div class="cobrand">
+      <img src="assets/logos/woki-b2b-solid.svg" alt="Woki" />
+      <span class="x" aria-hidden="true">×</span>
+      <img class="bigbox-mark" src="assets/logos/bigbox-dark.svg" alt="bigbox" />
+    </div>
+    <a class="btn btn-ghost" href="#form">Sumate</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow reveal in">Para restaurantes que ya usan Woki</span>
+      <h1 class="display-xxl reveal reveal-2 in">Sumá un canal de demanda sin tocar tu operación.</h1>
+      <p class="lead reveal reveal-3 in">bigbox es el marketplace de experiencias líder en Argentina. Conectá tu cuenta y las reservas de bigbox aparecen solas en tu panel de Woki, con disponibilidad en tiempo real desde el día uno.</p>
+      <p class="hero-slogan reveal reveal-3 in">Woki, el sistema de hospitalidad preferido por bigbox.</p>
+      <div class="hero-cta reveal reveal-4 in">
+        <a class="btn btn-primary btn-lg" href="#form"><span>Quiero sumar bigbox</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a class="btn btn-secondary btn-lg" href="https://wa.me/5491176520777?text=Hola%2C%20vengo%20de%20la%20alianza%20Woki%20%C3%97%20bigbox%20y%20quiero%20saber%20m%C3%A1s." target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      </div>
+      <div class="cta-sub reveal reveal-4 in">Sin cambiar tu operación. La integración se activa en minutos.</div>
+    </div>
+    <div class="reveal reveal-3 in">
+      <div class="mock-panel" role="img" aria-label="Panel de reservas Woki con una reserva entrante de bigbox">
+          <div class="mp-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Reservas — viernes 22/08</span>
+            <span class="spacer"></span>
+            <span class="filter">Todas</span>
+          </div>
+
+          <div class="mp-row bigbox">
+            <div class="left">
+              <div class="name">Elena Vidal</div>
+              <div class="meta"><span>2 personas</span> · <span class="badge-bigbox">bigbox</span></div>
+            </div>
+            <div class="right">
+              <div class="time num">21:00</div>
+              <div class="src"><span class="dot"></span> bigbox</div>
+            </div>
+          </div>
+          <div class="mp-detail">
+            <span class="lbl">Experiencia comprada</span>
+            <span class="val">Cena maridaje · incluye 5 tiempos + maridaje de vinos · Canjeado con voucher bigbox</span>
+          </div>
+
+          <div class="mp-row">
+            <div class="left">
+              <div class="name">Mauro Rossi</div>
+              <div class="meta">4 personas · Recurrente</div>
+            </div>
+            <div class="right">
+              <div class="time num">21:15</div>
+              <div class="src">Web propia</div>
+            </div>
+          </div>
+
+          <div class="mp-row">
+            <div class="left">
+              <div class="name">Carolina Sosa</div>
+              <div class="meta">2 personas</div>
+            </div>
+            <div class="right">
+              <div class="time num">21:30</div>
+              <div class="src">Instagram</div>
+            </div>
+          </div>
+
+          <div class="mp-row">
+            <div class="left">
+              <div class="name">Familia Pérez</div>
+              <div class="meta">5 personas · Cumpleaños</div>
+            </div>
+            <div class="right">
+              <div class="time num">21:45</div>
+              <div class="src">Walk-in</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="context">
+  <div class="container">
+    <h2 class="h2 reveal">Ya tenés la operación resuelta con Woki. Lo que falta es más gente entrando por la puerta.</h2>
+    <p class="lead reveal reveal-2">bigbox te pone en la vidriera del marketplace de experiencias más grande del país. Vos seguís operando con Woki, exactamente como hoy; la demanda de bigbox se suma sin fricción.</p>
+  </div>
+</section>
+
+<section class="section-retencion">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow reveal">Un canal nuevo, cero fricción</span>
+      <h2 class="h2 reveal reveal-2">Qué ganás al conectar bigbox con Woki.</h2>
+      <p class="lead reveal reveal-3">Cuatro beneficios concretos, desde el primer día, sin sumar trabajo a tu equipo.</p>
+    </div>
+    <div class="cards-2">
+      <article class="card-feature reveal">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l1.5-4h17L22 7"/><path d="M2 7h20v3a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z"/><path d="M4 12v8h16v-8"/></svg></div>
+        <h3>Vidriera del marketplace líder</h3>
+        <p>Tu restaurante queda visible para toda la base de compradores de bigbox que buscan dónde vivir su próxima experiencia.</p>
+      </article>
+      <article class="card-feature reveal reveal-2">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <h3>Las reservas de bigbox aparecen solas en Woki</h3>
+        <p>Cada reserva hecha desde bigbox entra directo a tu panel de Woki, con el detalle de qué experiencia compró el comensal. Sin WhatsApp ni carga manual.</p>
+      </article>
+      <article class="card-feature reveal reveal-3">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
+        <h3>Disponibilidad en tiempo real desde el día uno</h3>
+        <p>Tu disponibilidad de Woki se sincroniza con bigbox al instante. Sin overbooking, sin bloquear mesas a mano.</p>
+      </article>
+      <article class="card-feature reveal reveal-4">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>El comensal bigbox entra a tu base</h3>
+        <p>Cada cliente que llega por bigbox queda cargado en tu base de Woki, listo para fidelizar y convertir en recurrente.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section-operacion">
+  <div class="container">
+    <div class="op-grid">
+      <div>
+        <span class="eyebrow reveal">Operación</span>
+        <h2 class="h2 reveal reveal-2">La reserva bigbox entra sola a tu panel de Woki.</h2>
+        <p class="lead-op reveal reveal-3">Cuando alguien compra una experiencia o giftcard en bigbox, reserva desde ahí mismo. La reserva aparece en tu panel de Woki con un indicador de que viene de bigbox y el detalle exacto de qué compró. Todo dentro del Woki que ya usás.</p>
+        <ul class="op-list reveal reveal-4">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Reserva creada desde bigbox aparece directo en tu panel</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Indicador visual y detalle de qué experiencia compró</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Disponibilidad sincronizada en tiempo real, sin overbooking</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>El comensal queda en tu base para fidelizarlo después</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-3">
+        <div class="mock-panel" role="img" aria-label="Panel de reservas Woki con una reserva entrante de bigbox">
+          <div class="mp-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Reservas — viernes 22/08</span>
+            <span class="spacer"></span>
+            <span class="filter">Todas</span>
+          </div>
+
+          <div class="mp-row bigbox">
+            <div class="left">
+              <div class="name">Elena Vidal</div>
+              <div class="meta"><span>2 personas</span> · <span class="badge-bigbox">bigbox</span></div>
+            </div>
+            <div class="right">
+              <div class="time num">21:00</div>
+              <div class="src"><span class="dot"></span> bigbox</div>
+            </div>
+          </div>
+          <div class="mp-detail">
+            <span class="lbl">Experiencia comprada</span>
+            <span class="val">Cena maridaje · incluye 5 tiempos + maridaje de vinos · Canjeado con voucher bigbox</span>
+          </div>
+
+          <div class="mp-row">
+            <div class="left">
+              <div class="name">Mauro Rossi</div>
+              <div class="meta">4 personas · Recurrente</div>
+            </div>
+            <div class="right">
+              <div class="time num">21:15</div>
+              <div class="src">Web propia</div>
+            </div>
+          </div>
+
+          <div class="mp-row">
+            <div class="left">
+              <div class="name">Carolina Sosa</div>
+              <div class="meta">2 personas</div>
+            </div>
+            <div class="right">
+              <div class="time num">21:30</div>
+              <div class="src">Instagram</div>
+            </div>
+          </div>
+
+          <div class="mp-row">
+            <div class="left">
+              <div class="name">Familia Pérez</div>
+              <div class="meta">5 personas · Cumpleaños</div>
+            </div>
+            <div class="right">
+              <div class="time num">21:45</div>
+              <div class="src">Walk-in</div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="anchor-band">
+  <div class="container">
+    <p class="ancla reveal">Vos seguís operando con Woki. <span class="em">bigbox te suma la demanda.</span></p>
+  </div>
+</section>
+
+<section class="section-form" id="form">
+  <div class="container">
+    <div class="form-grid">
+      <div class="form-copy">
+        <span class="eyebrow reveal">Conectá tu cuenta</span>
+        <h2 class="h2 reveal reveal-2">Sumá el canal bigbox a tu Woki.</h2>
+        <p class="lead reveal reveal-3">Dejanos tus datos y el equipo de bigbox te contacta para activar la integración. No cambia nada en tu operación: sumás un canal de demanda nuevo.</p>
+        <p class="slogan-line reveal reveal-3">Woki, el sistema de hospitalidad preferido por bigbox.</p>
+        <ul class="form-bullets reveal reveal-4">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Vidriera en el marketplace de experiencias líder de Argentina.</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Las reservas de bigbox aparecen solas en tu panel de Woki.</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Disponibilidad en tiempo real y el comensal bigbox en tu base.</li>
+        </ul>
+      </div>
+      <div class="form-card reveal reveal-2">
+        <!-- Lead del segmento B (cliente Woki) -> el lead se dirige al equipo de bigbox -->
+        <!-- TODO: conectar endpoint / herramienta de forms -->
+        <form class="capture" action="#" method="post" novalidate>
+          <input type="hidden" name="campaign" value="base-woki" />
+          <div class="form-body">
+            <div class="field">
+              <label>Nombre y apellido <span class="req">*</span></label>
+              <input type="text" name="nombre" placeholder="Tu nombre y apellido" required autocomplete="name" />
+              <span class="msg">Completá tu nombre y apellido.</span>
+            </div>
+            <div class="field">
+              <label>Restaurante <span class="req">*</span></label>
+              <input type="text" name="restaurante" placeholder="Nombre del restaurante" required autocomplete="organization" />
+              <span class="msg">Completá el nombre del restaurante.</span>
+            </div>
+            <div class="field">
+              <label>Ciudad <span class="req">*</span></label>
+              <input type="text" name="ciudad" placeholder="Ciudad" required autocomplete="address-level2" />
+              <span class="msg">Completá tu ciudad.</span>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Email <span class="req">*</span></label>
+                <input type="email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
+                <span class="msg">Ingresá un email válido.</span>
+              </div>
+              <div class="field">
+                <label>Teléfono / WhatsApp <span class="req">*</span></label>
+                <input type="tel" name="telefono" placeholder="+54 9 11 ..." required autocomplete="tel" />
+                <span class="msg">Completá un teléfono de contacto.</span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Quiero sumar bigbox</button>
+            <p class="form-note">Te contactamos en menos de 48 horas. Sin compromiso, sin contratos.</p>
+          </div>
+          <div class="form-success" role="status" aria-live="polite">
+            <div class="ok-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <h3>¡Listo! Te contactamos en menos de 48 horas.</h3>
+            <p>Gracias por sumarte. Nuestro equipo se pone en contacto para avanzar con la puesta en marcha.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="main-foot">
+  <div class="container inner">
+    <div class="left">
+      <img src="assets/logos/woki-b2b-solid.svg" alt="Woki" />
+      <span class="x-sep" aria-hidden="true">×</span>
+      <img src="assets/logos/bigbox-dark.svg" alt="bigbox" />
+      <span>Woki, el sistema de hospitalidad preferido por bigbox.</span>
+    </div>
+    <div class="right">
+      <a href="https://wokiapp.com" target="_blank" rel="noopener">wokiapp.com</a>
+      <a href="https://restaurantes.wokiapp.com" target="_blank" rel="noopener">restaurantes.wokiapp.com</a>
+      <a href="https://wa.me/5491176520777?text=Hola%2C%20vengo%20de%20la%20alianza%20Woki%20%C3%97%20bigbox%20y%20quiero%20saber%20m%C3%A1s." target="_blank" rel="noopener">Hablanos</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var nav = document.getElementById('topnav');
+    var apply = function () {
+      if (window.scrollY > 10) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', apply, { passive: true });
+    apply();
+  })();
+  (function () {
+    var els = document.querySelectorAll('.reveal:not(.in)');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+  // Formulario de captura — validación en cliente + estado de éxito
+  (function () {
+    var forms = document.querySelectorAll('form.capture');
+    forms.forEach(function (f) {
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var ok = true;
+        f.querySelectorAll('[required]').forEach(function (inp) {
+          var field = inp.closest('.field');
+          var valid = inp.value.trim() !== '';
+          if (valid && inp.type === 'email') {
+            valid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inp.value.trim());
+          }
+          if (!valid) { field.classList.add('err'); ok = false; }
+          else { field.classList.remove('err'); }
+        });
+        if (!ok) { var bad = f.querySelector('.field.err input'); if (bad) bad.focus(); return; }
+        f.closest('.form-card').classList.add('done');
+      });
+      f.querySelectorAll('input').forEach(function (inp) {
+        inp.addEventListener('input', function () {
+          var fl = inp.closest('.field'); if (fl) fl.classList.remove('err');
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
